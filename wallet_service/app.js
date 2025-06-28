@@ -1,7 +1,13 @@
 const express = require("express");
+const app = express();
+
+// Add root route handler
+app.get("/", (req, res) => {
+  res.send("Wallet Service is running");
+});
+
 const ledgerRoutes = require("./routes/ledger");
 
-const app = express();
 app.use(express.json());
 app.use("/api", ledgerRoutes);
 
@@ -12,5 +18,5 @@ app.get("/health", (req, res) => {
 
 const PORT = 3001;
 app.listen(PORT, () => {
-  console.log(`Wallet service running on port ${PORT}`);
+  console.log(`Wallet Service running on port ${PORT}`);
 });
