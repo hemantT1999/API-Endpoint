@@ -1,7 +1,14 @@
 const express = require("express");
-const adminRoutes = require("./routes/admin");
-
 const app = express();
+
+// Add this root route handler
+app.get("/", (req, res) => {
+  res.send("Fraud & Compliance Service is running");
+});
+
+const adminRoutes = require("./routes/admin");
+app.use("/admin", adminRoutes);
+
 app.use(express.json());
 app.use("/api/admin", adminRoutes);
 
@@ -12,5 +19,5 @@ app.get("/health", (req, res) => {
 
 const PORT = 3000;
 app.listen(PORT, () => {
-  console.log(`Fraud & Compliance service running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
